@@ -17,7 +17,7 @@ const IPCIDR = require('ip-cidr');
   Assign the imported object to variable path.
 */
 const path = require ('path');
-//const path = require('https://github.com/cmchase4664/app-ip_address/');
+//const path = require('https://github.com/payneh11/app-ip_address/');
 
 /**
 * Import helper function module located in the same directory
