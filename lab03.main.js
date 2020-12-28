@@ -1,7 +1,6 @@
 /*
   Import the ip-cidr npm package.
   See https://www.npmjs.com/package/ip-cidr
-
   The ip-cidr package exports a class.
   Assign the class definition to variable IPCIDR.
 */
@@ -10,30 +9,29 @@ const IPCIDR = require('ip-cidr');
 /*
   Import the built-in path module.
   See https://nodejs.org/api/path.html
-
   The path module provides utilities for working with file and directory paths.
   IAP requires the path module to access local file modules.
   The path module exports an object.
   Assign the imported object to variable path.
 */
 const path = require ('path');
-//const path = require('https://github.com/cmchase4664/app-ip_address/');
+//const path = require('https://github.com/payneh11/app-ip_address/');
 
 /**
-* Import helper function module located in the same directory
-* as this module. IAP requires the path object's join method
-* to unequivocally locate the file module.
-*/
+ * Import helper function module located in the same directory
+ * as this module. IAP requires the path object's join method
+ * to unequivocally locate the file module.
+ */
 const { getIpv4MappedIpv6Address } = require(path.join(__dirname, 'ipv6.js'));
 //const { getIpv4MappedIpv6Address } = require(path.join('blob/master', './ipv6.js'));
 
 /**
-* Calculate and return the first host IP address from a CIDR subnet.
-* @param {string} cidrStr - The IPv4 subnet expressed
-*                 in CIDR format.
-* @param {callback} callback - A callback function.
-* @return {string} (firstIpAddress) - An IPv4 address.
-*/
+ * Calculate and return the first host IP address from a CIDR subnet.
+ * @param {string} cidrStr - The IPv4 subnet expressed
+ *                 in CIDR format.
+ * @param {callback} callback - A callback function.
+ * @return {string} (firstIpAddress) - An IPv4 address.
+ */
 function getFirstIpAddress(cidrStr, callback) {
 
   // Initialize return arguments for callback
@@ -76,10 +74,10 @@ function getFirstIpAddress(cidrStr, callback) {
   }
 
 /**
-* Calculates an IPv4-mapped IPv6 address.
-* @param {string} ipv4 - An IPv4 address in dotted-quad format.
-* @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
-*/
+ * Calculates an IPv4-mapped IPv6 address.
+ * @param {string} ipv4 - An IPv4 address in dotted-quad format.
+ * @return {*} (ipv6Address) - An IPv6 address string or null if a run-time problem was detected.
+ */
 /*
   This section is used to test function and log any errors.
   We will make several positive and negative tests.
