@@ -18,6 +18,5 @@
   "homepage": "https://github.com/payneh11/app-ip_address#readme",
   "dependencies": {
     "ip-cidr": "^2.1.1"
-  },
-  "devDependencies": {}
+  }
 }
