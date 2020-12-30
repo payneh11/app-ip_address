@@ -44,10 +44,8 @@ class IpAddress {
     getFirstIpAddress(cidrStr, callback) {
 
   // Initialize return arguments for callback
-    let firstIpAddress = {
-        ipv4: null,
-        ipv6: null,
-    };
+    let firstIpAddress = null;
+    let secondIpAddress = null;
     let callbackError = null;
 
     // Instantiate an object from the imported class and assign the instance to variable cidr.
@@ -60,31 +58,30 @@ class IpAddress {
         limit: 1
     };
 
-    // Use the object's isValid() method to verify the passed CIDR.
+     // Use the object's isValid() method to verify the passed CIDR.
     if (!cidr.isValid()) {
-        // If the passed CIDR is invalid, set an error message.
-        callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
+      // If the passed CIDR is invalid, set an error message.
+      callbackError = 'Error: Invalid CIDR passed to getFirstIpAddress.';
     } else {
-        // If the passed CIDR is valid, call the object's toArray() method.
-        // Notice the destructering assignment syntax to get the value of the first array's element.
-        [firstIpAddress] = cidr.toArray(options);
+      // If the passed CIDR is valid, call the object's toArray() method.
+      // Notice the destructering assignment syntax to get the value of the first array's element.
+      [firstIpAddress] = cidr.toArray(options);
+      secondIpAddress = getIpv4MappedIpv6Address(firstIpAddress);
     }
 
-    // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
-    let ipv4MappedIpv6 = null;
-    if (!cidr.isValid()) {
-      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
-    } else {
-      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
-    }
-  
+    const myvars = {
+      ipv4: firstIpAddress,
+      ipv6: secondIpAddress
+    };
 
     // Call the passed callback function.
     // Node.js convention is to pass error data as the first argument to a callback.
     // The IAP convention is to pass returned data as the first argument and error
     // data as the second argument to the callback function.
-    return callback(ipv4MappedIpv6, callbackError);
-    }
+    return callback(myvars, callbackError);
+
+  }
+
 }
 
 module.exports = new IpAddress;
