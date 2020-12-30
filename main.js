@@ -73,7 +73,7 @@ class IpAddress {
     // Calling the getIpv4MappedIpv6Address() to calculate the IPv4-mapped IPv6 address for the passed IPv4 address.
     let ipv4MappedIpv6 = null;
     if (!cidr.isValid()) {
-      ipv4MappedIpv6 = (`IPv4:"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
+      ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"${ipv4MappedIpv6}"`)
     } else {
       ipv4MappedIpv6 = (`"IPv4":"${firstIpAddress}" , "IPv6":"` + getIpv4MappedIpv6Address(firstIpAddress) +'"');
     }
